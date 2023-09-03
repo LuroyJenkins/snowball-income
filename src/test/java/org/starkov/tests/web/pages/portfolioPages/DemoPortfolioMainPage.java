@@ -4,15 +4,16 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.starkov.tests.web.domain.Currencies;
 import org.starkov.tests.web.pages.components.DropDownMenu;
+import org.starkov.tests.web.pages.components.MenuTab;
 import org.starkov.tests.web.pages.components.NavigationTab;
 import org.starkov.tests.web.pages.components.TopBar;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class DemoPortfolioMainPage {
+    MenuTab menuTab = new MenuTab();
     NavigationTab navigationTab = new NavigationTab();
     TopBar topBar = new TopBar();
     DropDownMenu dropDownMenu = new DropDownMenu();
@@ -60,13 +61,12 @@ public class DemoPortfolioMainPage {
     }
 
     public DemoPortfolioMainPage selectCurrency(Currencies currency) {
-        statsCards.first().shouldBe(visible);
+        menuTab.waitAllTabs(5);
         dropDownMenu.selectItem(currency.getDescription());
         return this;
     }
 
     public void statsCardCurrencyCheck(String statsCardHeader, Currencies currency) {
-//        statsCards.findBy(text(statsCardHeader)).shouldHave(exactText(currency.getSymbol()));
         statsCards.filterBy(text(statsCardHeader)).first().shouldHave(text(currency.getSymbol()));
     }
 
