@@ -22,6 +22,7 @@ public class LocalAndRemoteWebDriver {
                     "enableVNC", true,
                     "enableVideo", true
             ));
+            Configuration.browserCapabilities = capabilities;
         }
     }
 }
