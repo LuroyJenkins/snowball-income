@@ -1,0 +1,199 @@
+## Проект по автоматизации тестирования для сервиса Snowball-Income
+<p  align="center">
+<a href="https://snowball-income.com/"><img src="./images/icons/favicon.png" width="100"></a> <a href="https://snowball-income.com/"><img src="./images/icons/snowball.svg" width="400"></a>
+</p>
+
+### :pushpin: Содержание:
+
++ [Описание](#Описание)
++ [Используемый стек](#computer-используемый-стек)
++ [Варианты запуска](#Варианты-запуска)
+    + [Запуск тестов из терминала](#Команды-для-gradle)
+    + [Запуск в Jenkins](#-запуск-в-jenkins)
++ [Уведомления в Telegram](#-telegram-уведомления)
++ [Результаты тестов в Allure Report](#-результаты-тестов-в-allure-report)
++ [Интеграция с Allure TestOps](#-интеграция-с-allure-testops)
++ [Интеграция с Jira](#-интеграция-с-allure-testops)
++ [Видео примера запуска тестов в Selenoid](#-видео-запуска-тестов-в-selenoid)
+
+# <a name="Описание">Описание</a>
+Тестовый проект состоит из веб-тестов (UI).\
+Краткий список интересных фактов о проекте:
+- [x] `Page Object` проектирование
+- [x] Параметризованные тесты
+- [x] Различные конфигурации для запуска теста в зависимости от параметров сборки
+- [x] Интеграция с `Allure TestOps`
+- [x] Автотесты как тестовая документация
+- [x] Интеграция с `Jira`
+
+### :computer: Используемый стек
+
+<p  align="center">
+  <code><img width="5%" title="IntelliJ IDEA" src="./images/icons/IDEA-logo.svg"></code>
+  <code><img width="5%" title="Java" src="./images/icons/java-logo.svg"></code>
+  <code><img width="5%" title="Selenide" src="./images/icons/selenide-logo.svg"></code>
+  <code><img width="5%" title="Selenoid" src="./images/icons/selenoid-logo.svg"></code>
+  <code><img width="5%" title="Gradle" src="./images/icons/gradle-logo.svg"></code>
+  <code><img width="5%" title="JUnit5" src="./images/icons/junit5-logo.svg"></code>
+  <code><img width="5%" title="Allure Report" src="./images/icons/allure-Report-logo.svg"></code>
+  <code><img width="5%" title="Allure TestOps" src="./images/icons/allure-ee-logo.svg"></code>
+  <code><img width="5%" title="Github" src="./images/icons/git-logo.svg"></code>
+  <code><img width="5%" title="Jenkins" src="./images/icons/jenkins-logo.svg"></code>
+  <code><img width="5%" title="Jira" src="./images/icons/jira-logo.svg"></code>
+  <code><img width="5%" title="Telegram" src="./images/icons/Telegram.svg"></code>
+</p>
+
+Автотесты в этом проекте написаны на `Java` использую `Selenide` фреймворк.\
+`Gradle` - используется как инструмент автоматизации сборки.  \
+`JUnit5` - для выполнения тестов.\
+`Jenkins` - CI/CD для запуска тестов удаленно.\
+`Selenoid` - для удаленного запуска браузера в `Docker` контейнерах.\
+`Allure Report` - для визуализации результатов тестирования.\
+`Telegram Bot` - для уведомлений о результатах тестирования.\
+`Allure TestOps` - как система управления тестированием.
+
+[Вернуться к оглавлению ⬆](#pushpin-содержание)
+
+# <a name="Варианты запуска">Варианты запуска</a>
+
+## <a name="GradleCommand">Команды для Gradle</a>
+Для запуска локально и в Jenkins используется следующая команда::
+```bash
+gradle clean <TaskNake> <Some params...>
+```
+
+`TaskName` - теги для запуска выполнения тестов:
+>- *regressTests* - запуск всех тестов
+>- *demoPortfolioTests* - запуск тестов на Демо-портфель
+>- *authTests* - запуск тестов на авторизацию
+>- *videoContentTests* - запуск тестов на видеоконтент
+
+Дополнительные параметры:
+> `-DremoteUrl=https://user1:1234@selenoid.autotests.cloud/wd/hub` - URL-адрес selenoid\
+> `-Dbrowser=chrome` - выбор браузера (по умолчанию - chrome)\
+> `-DbrowserVersion=100.0` - установка версии браузера\
+> `-DbrowserSize=1920x1080` - установка разрешения окна браузера.
+
+Допустимые комбинации:
+```mermaid
+graph LR
+A[tag] --> C[Web]
+C --> E[browser_selenoid]
+C --> F[browser_local]
+```
+
+[Вернуться к оглавлению ⬆](#pushpin-содержание)
+
+## <img src="./images/icons/jenkins-logo.svg" title="Jenkins" width="4%"/> <a name="Запуск в Jenkins">Запуск в [Jenkins](https://jenkins.autotests.cloud/job/Starkov_qa_guru_15)</a>
+Главная страница сборки:
+<p  align="center">
+<img src="images/screens/JenkinsBuild.png" width="950">
+</p>
+
+Параметризованное задание Jenkins может быть запущено с необходимыми ***Browser***, ***Browser Version***, ***Browser Size*** и ***Feature***:
+<p  align="center">
+<img src="images/screens/JenkinsParams.png" alt="JenkinsBuildParameters" width="950">
+</p>
+
+После завершения сборки результаты тестирования доступны в:
+>- <code><strong>*Allure Report*</strong></code>
+>- <code><strong>*Allure TestOps*</strong></code> - результаты загружаются туда и тест-кейсы могут автоматически обновляться в соответствии с последними изменениями в коде.
+
+[Вернуться к оглавлению ⬆](#pushpin-содержание)
+
+# <img width="4%" style="vertical-align:middle" title="Telegram" src="images/icons/Telegram.svg"> <a>Telegram уведомления</a>
+После завершения сборки, бот созданный в <code>Telegram</code>, автоматически обрабатывает и отправляет сообщение с результатом.
+<p  align="center">
+<img src="images/screens/Telegram.png" width="550">
+</p>
+
+[Вернуться к оглавлению ⬆](#pushpin-содержание)
+
+# <img width="4%" style="vertical-align:middle" title="AllureReport" src="images/icons/allure-Report-logo.svg"> <a name="AllureReport">Результаты тестов в [Allure Report](https://jenkins.autotests.cloud/job/Starkov_qa_guru_15/5/allure/)</a>
+
+## Главная страница
+Главная страница отчета Allure содержит следующие блоки:
+
+>- <code><strong>*ALLURE REPORT*</strong></code> - отображает дату и время теста, общее количество запущенных тестов, а также диаграмму с процентом и количеством успешных, упавших и сломавшихся в процессе выполнения тестов
+>- <code><strong>*TREND*</strong></code> - отображает тенденцию выполнения тестов для всех запусков
+>- <code><strong>*SUITES*</strong></code> - отображает распределение тестов по сьютам
+>- <code><strong>*CATEGORIES*</strong></code> - отображает распределение неудачных тестов по типам дефектов
+<p align="center">
+  <img src="images/screens//AllureReport.png" width="950">
+</p>
+
+## Список тестов с шагами и тестовыми артефактами
+На странице список тестов, сгруппированных по наборам, с указанием статуса для каждого теста.\
+Может быть показана полная информация о каждом тесте: теги, продолжительность, подробные шаги.
+
+<p align="center">
+  <img src="images/screens/AllureTestSuites.png" alt="AllureReportSuites" width="750">
+</p>
+
+Также доступны дополнительные тестовые артефакты:
+>- Screenshot
+>- Page Source
+>- Browser console log
+>- Video
+
+<p align="left">
+  <img src="images/screens/AllureResult.png" alt="AllureResult" width="950">
+</p>
+
+[Вернуться к оглавлению ⬆](#pushpin-содержание)
+
+# <img width="4%" style="vertical-align:middle" title="Allure TestOps" src="images/icons/allure-ee-logo.svg"> <a>Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/3586/dashboards)</a>
+> Ссылка доступна только авторизованным пользователям.
+
+Выполнена интеграция сборки <code>Jenkins</code> с <code>Allure TestOps</code>.
+Результат выполнения автотестов отображается в <code>Allure TestOps</code>
+На Dashboard в <code>Allure TestOps</code> отображена статистика пройденных тестов.
+
+Тест-кейсы в проекте импортируются и постоянно обновляются из кода,
+поэтому нет необходимости в синхронизации ручных тест-кейсов и автотестов.\
+Достаточно создать и обновить автотест в коде и тест-кейс всегда будет в актуальном состоянии.
+
+## Allure TestOps Dashboard
+
+<p align="center">
+  <img src="images/screens/AllureTestOps.png" alt="AllureTestOps" width="950">
+</p>
+
+```mermaid
+stateDiagram-v2
+state "Тест создан/обновлен в коде" as A
+state "Запускается сборка в Jenkins" as B
+state "Сборка в Jenkins завершена" as C
+state "Запуск Allure TestOps, связанный со сборкой, отмеченной как закрытая" as D
+state "Все выполненные тест-кейсы автоматически создаются/обновляются в соответствии с кодом" as E
+[*] --> A
+A --> B
+B --> C
+C --> D
+D --> E
+E --> A
+```
+
+## Allure TestOps Test Cases
+
+<p align="center">
+  <img src="images/screens/AllureTestOpsCases.png" alt="AllureTestOpsTests" width="950">
+</p>
+
+[Вернуться к оглавлению ⬆](#pushpin-содержание)
+
+# <img width="4%" style="vertical-align:middle" title="Jira" src="images/icons/jira-logo.svg"> <a>Интеграция с Jira</a>
+Реализована интеграция <code>Allure TestOps</code> с <code>Jira</code>, в тикете отображается информация, какие тест-кейсы были написаны в рамках задачи и результат их прогона.
+<p align="center">
+  <img src="images/screens/JiraIntegration.png" alt="JiraIntegration" width="950">
+</p>
+
+[Вернуться к оглавлению ⬆](#pushpin-содержание)
+
+# <img width="4%" style="vertical-align:middle" title="Selenoid" src="images/icons/selenoid-logo.svg"> <a>Видео запуска тестов в Selenoid</a>
+К каждому тесту в отчете прилагается видео прохождения теста:
+<p align="center">
+  <img src="images/screens/video.gif" alt="JiraIntegration">
+</p>
+
+[Вернуться к оглавлению ⬆](#pushpin-содержание)

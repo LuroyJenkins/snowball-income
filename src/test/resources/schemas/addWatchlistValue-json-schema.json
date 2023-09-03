@@ -1,0 +1,18 @@
+{
+  "watchlistId": "34a2031b-a8ef-432d-a942-017d5e959503",
+  "watchlistName": "Избранное",
+  "assetInfoId": "3c6ceabc-db1a-40be-a726-7c305b5aef20",
+  "ticker": "VOW",
+  "exchange": "F",
+  "currency": "EUR",
+  "note": null,
+  "color": null,
+  "order": 1,
+  "priceHighlightMin": null,
+  "priceHighlightMax": null,
+  "isValid": true,
+  "validationErrors": [
+
+  ],
+  "id": "656fb2a2-e271-4ef5-8035-c894fdc9b574"
+}

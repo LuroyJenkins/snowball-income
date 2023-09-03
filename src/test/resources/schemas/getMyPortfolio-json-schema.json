@@ -1,0 +1,159 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "goalType": {
+          "type": "integer"
+        },
+        "goalValue": {
+          "type": "integer"
+        },
+        "goalCurrency": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "broker": {
+          "type": "null"
+        },
+        "applyTaxesOnPaidDividends": {
+          "type": "boolean"
+        },
+        "doNotAdjustXIRR": {
+          "type": "boolean"
+        },
+        "doNotAdjustCashDividendsGoesThroughWithdrawals": {
+          "type": "boolean"
+        },
+        "dividendTaxPercent": {
+          "type": "integer"
+        },
+        "isComposite": {
+          "type": "boolean"
+        },
+        "isAutoSyncEnabled": {
+          "type": "boolean"
+        },
+        "shareIsPublic": {
+          "type": "boolean"
+        },
+        "sharePublicKey": {
+          "type": "null"
+        },
+        "childPortfolios": {
+          "type": "array",
+          "items": {}
+        },
+        "trackCash": {
+          "type": "boolean"
+        },
+        "trackCashType": {
+          "type": "integer"
+        },
+        "removeCashAssets": {
+          "type": "boolean"
+        },
+        "useCategories": {
+          "type": "boolean"
+        },
+        "brokerCommission": {
+          "type": "null"
+        },
+        "viewType": {
+          "type": "integer"
+        },
+        "syncProvider": {
+          "type": "null"
+        },
+        "syncParam": {
+          "type": "null"
+        },
+        "order": {
+          "type": "integer"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "setupRequired": {
+          "type": "boolean"
+        },
+        "hasHoldings": {
+          "type": "boolean"
+        },
+        "defaultCurrency": {
+          "type": "null"
+        },
+        "portfolioNotificationSettings": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "notificationType": {
+                  "type": "integer"
+                },
+                "deliveryMethod": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "notificationType",
+                "deliveryMethod"
+              ]
+            }
+          ]
+        },
+        "isValid": {
+          "type": "boolean"
+        },
+        "validationErrors": {
+          "type": "null"
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "goalType",
+        "goalValue",
+        "goalCurrency",
+        "type",
+        "broker",
+        "applyTaxesOnPaidDividends",
+        "doNotAdjustXIRR",
+        "doNotAdjustCashDividendsGoesThroughWithdrawals",
+        "dividendTaxPercent",
+        "isComposite",
+        "isAutoSyncEnabled",
+        "shareIsPublic",
+        "sharePublicKey",
+        "childPortfolios",
+        "trackCash",
+        "trackCashType",
+        "removeCashAssets",
+        "useCategories",
+        "brokerCommission",
+        "viewType",
+        "syncProvider",
+        "syncParam",
+        "order",
+        "hidden",
+        "setupRequired",
+        "hasHoldings",
+        "defaultCurrency",
+        "portfolioNotificationSettings",
+        "isValid",
+        "validationErrors",
+        "id"
+      ]
+    }
+  ]
+}

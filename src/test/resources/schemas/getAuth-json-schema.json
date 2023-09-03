@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "loginProps": {
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string"
+        },
+        "expires_in": {
+          "type": "integer"
+        },
+        "token_type": {
+          "type": "string"
+        },
+        "refresh_token": {
+          "type": "string"
+        },
+        "portfolio": {
+          "type": "null"
+        },
+        "hasPortfolio": {
+          "type": "boolean"
+        },
+        "analyticsUserId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "access_token",
+        "expires_in",
+        "token_type",
+        "refresh_token",
+        "portfolio",
+        "hasPortfolio",
+        "analyticsUserId"
+      ]
+    }
+  },
+  "required": [
+    "loginProps"
+  ]
+}

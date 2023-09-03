@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "entity": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "user": {
+          "type": "null"
+        },
+        "receivesUpdatesAndPromos": {
+          "type": "boolean"
+        },
+        "receivesAccountUpdates": {
+          "type": "boolean"
+        },
+        "receivesPortfolioUpdates": {
+          "type": "boolean"
+        },
+        "preferredLanguage": {
+          "type": "string"
+        },
+        "canChangeLanguage": {
+          "type": "boolean"
+        },
+        "preferredLocale": {
+          "type": "null"
+        },
+        "publicInvestorName": {
+          "type": "string"
+        },
+        "publicInvestorLinks": {
+          "type": "string"
+        },
+        "publicInvestorLogo": {
+          "type": "null"
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "userId",
+        "user",
+        "receivesUpdatesAndPromos",
+        "receivesAccountUpdates",
+        "receivesPortfolioUpdates",
+        "preferredLanguage",
+        "canChangeLanguage",
+        "preferredLocale",
+        "publicInvestorName",
+        "publicInvestorLinks",
+        "publicInvestorLogo",
+        "id"
+      ]
+    },
+    "isValid": {
+      "type": "boolean"
+    },
+    "validationErrors": {
+      "type": "null"
+    },
+    "id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity",
+    "isValid",
+    "validationErrors",
+    "id"
+  ]
+}
