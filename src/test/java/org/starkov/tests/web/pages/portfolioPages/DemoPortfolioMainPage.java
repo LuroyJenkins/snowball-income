@@ -1,6 +1,5 @@
 package org.starkov.tests.web.pages.portfolioPages;
 
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.starkov.tests.web.domain.Currencies;
@@ -8,11 +7,10 @@ import org.starkov.tests.web.pages.components.DropDownMenu;
 import org.starkov.tests.web.pages.components.NavigationTab;
 import org.starkov.tests.web.pages.components.TopBar;
 
-import static com.codeborne.selenide.CollectionCondition.*;
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.withText;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class DemoPortfolioMainPage {
     NavigationTab navigationTab = new NavigationTab();
@@ -27,7 +25,6 @@ public class DemoPortfolioMainPage {
             categoryList = categoryListCard.$(".table-responsive"),
             categoryPath = categoryViewCard.$(".col"),
             portfolioCategoryCanvas = canvasList.first();
-
 
 
     public DemoPortfolioMainPage clickToCategoryFromList() {
@@ -45,29 +42,30 @@ public class DemoPortfolioMainPage {
         categoryPath.shouldHave(text(categoryDescription));
     }
 
-    public DemoPortfolioMainPage diagramCategoryClick(){
+    public DemoPortfolioMainPage diagramCategoryClick() {
         sleep(2000);
         actions().moveToElement(portfolioCategoryCanvas, -100, 0).click().perform();
         return this;
     }
 
-    public void categoryPathIsNotNull(){
+    public void categoryPathIsNotNull() {
         sleep(2000);
         int sizeOfPath = categoryPath.$$("li").size();
         assertNotEquals(1, sizeOfPath);
     }
 
-    public DemoPortfolioMainPage openCurrencySelector(){
+    public DemoPortfolioMainPage openCurrencySelector() {
         topBar.openCurrencySelector();
         return this;
     }
 
-    public DemoPortfolioMainPage selectCurrency(Currencies currency){
+    public DemoPortfolioMainPage selectCurrency(Currencies currency) {
+        statsCards.first().shouldBe(visible);
         dropDownMenu.selectItem(currency.getDescription());
         return this;
     }
 
-    public void statsCardCurrencyCheck(String statsCardHeader, Currencies currency){
+    public void statsCardCurrencyCheck(String statsCardHeader, Currencies currency) {
 //        statsCards.findBy(text(statsCardHeader)).shouldHave(exactText(currency.getSymbol()));
         statsCards.filterBy(text(statsCardHeader)).first().shouldHave(text(currency.getSymbol()));
     }
