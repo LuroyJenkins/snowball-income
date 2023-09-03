@@ -50,14 +50,13 @@ public class TestBase {
 
     private void attachEnvDependingTestArtifacts() {
         Attachments.pageSource();
-        String sessionId = Attachments.getSessionId();
         switch (Project.config.runIn()) {
             case "ios_browserstack":
-                Attachments.videoBrowserstack(sessionId);
+                Attachments.videoBrowserstack();
                 break;
             case "browser_selenoid":
                 Attachments.screenshotAs("Last screenshot");
-                Attachments.videoSelenoid(sessionId);
+                Attachments.videoSelenoid();
                 break;
             case "browser_local":
                 Attachments.screenshotAs("Last screenshot");

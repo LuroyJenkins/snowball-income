@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
+import static com.codeborne.selenide.Selenide.sessionId;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 
@@ -39,21 +40,21 @@ public class Attachments {
     }
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
-    public static String videoBrowserstack(String sessionId) {
+    public static String videoBrowserstack() {
         return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                + Browserstack.videoUrl(sessionId)
+                + Browserstack.videoUrl(getSessionId())
                 + "' type='video/mp4'></video></body></html>";
     }
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
-    public static String videoSelenoid(String sessionId) {
+    public static String videoSelenoid() {
         return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                + getVideoUrl(sessionId)
+                + getVideoUrl()
                 + "' type='video/mp4'></video></body></html>";
     }
 
-    private static URL getVideoUrl(String sessionId) {
-        String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId + ".mp4";
+    private static URL getVideoUrl() {
+        String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId() + ".mp4";
 
         try {
             return new URL(videoUrl);
