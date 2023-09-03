@@ -25,8 +25,13 @@ public class TestBase {
 
     private static void selectDriver() {
         switch (Project.config.runIn()) {
-            case "browser_selenoid", "browser_local" -> LocalAndRemoteWebDriver.configure();
-            case "ios_browserstack" -> Configuration.browser = BrowserstackIosDriver.class.getName();
+            case "browser_selenoid":
+            case "browser_local":
+                LocalAndRemoteWebDriver.configure();
+                break;
+            case "ios_browserstack":
+                Configuration.browser = BrowserstackIosDriver.class.getName();
+                break;
         }
     }
 
@@ -47,19 +52,19 @@ public class TestBase {
         Attachments.pageSource();
         String sessionId = Attachments.getSessionId();
         switch (Project.config.runIn()) {
-            case "ios_browserstack" -> {
+            case "ios_browserstack":
                 Attachments.videoBrowserstack(sessionId);
-            }
-            case "browser_selenoid" -> {
+                break;
+            case "browser_selenoid":
                 Attachments.screenshotAs("Last screenshot");
                 Attachments.videoSelenoid(sessionId);
-            }
-            case "browser_local" -> {
+                break;
+            case "browser_local":
                 Attachments.screenshotAs("Last screenshot");
                 if (!Project.config.browser().equals("firefox")) {
                     Attachments.browserConsoleLogs();
                 }
-            }
+                break;
         }
     }
 }
