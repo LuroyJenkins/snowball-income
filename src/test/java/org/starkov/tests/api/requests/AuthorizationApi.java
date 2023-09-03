@@ -10,11 +10,11 @@ import static io.restassured.RestAssured.given;
 import static org.starkov.tests.api.specs.AuthSpec.authRequestSpec;
 
 public class AuthorizationApi {
-    private static final BaseSpec spec = new BaseSpec();
+    private BaseSpec spec = new BaseSpec();
     private final static String apiEndPoint = "api/account/login";
     private static final String authSchemaPath = "schemas/getAuth-json-schema.json";
 
-    public static AuthResponseModel getAuthorization() {
+    public AuthResponseModel getAuthorization() {
         return given(authRequestSpec)
                 .body(new AuthRequestModel(config.login(), config.password()))
                 .when()

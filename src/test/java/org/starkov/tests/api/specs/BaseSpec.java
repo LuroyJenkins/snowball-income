@@ -17,7 +17,7 @@ public class BaseSpec {
             .filter(withCustomTemplates())
             .contentType(JSON)
             .header("Authorization", "Bearer " +
-                    AuthorizationApi.getAuthorization().getLoginProps().getAccessToken());
+                    new AuthorizationApi().getAuthorization().getLoginProps().getAccessToken());
 
 
     public ResponseSpecification getResponseSpec(int statusCode) {

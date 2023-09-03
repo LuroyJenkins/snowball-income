@@ -16,7 +16,7 @@ public class UserSpec extends BaseSpec{
                 .filter(withCustomTemplates())
                 .contentType(MULTIPART)
                 .header("Authorization", "Bearer " +
-                        AuthorizationApi.getAuthorization().getLoginProps().getAccessToken());
+                        new AuthorizationApi().getAuthorization().getLoginProps().getAccessToken());
         for (Map.Entry<String, String> entry : formData.entrySet()){
             formDataRequestSpec.multiPart(entry.getKey(), entry.getValue());
         }
