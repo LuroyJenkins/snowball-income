@@ -1,4 +1,4 @@
-## Проект по автоматизации тестирования для сервиса Snowball-Income
+## Проект по автоматизации тестирования для сервиса [Snowball-Income](https://snowball-income.com/)
 <p  align="center">
 <a href="https://snowball-income.com/"><img src="./images/icons/favicon.png" width="100"></a> <a href="https://snowball-income.com/"><img src="./images/icons/snowball.svg" width="400"></a>
 </p>
