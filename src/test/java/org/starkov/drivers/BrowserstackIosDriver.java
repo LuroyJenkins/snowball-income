@@ -13,7 +13,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static config.Project.config;
-import static io.appium.java_client.remote.MobileBrowserType.CHROME;
 import static io.appium.java_client.remote.MobileBrowserType.SAFARI;
 
 public class BrowserstackIosDriver implements WebDriverProvider {

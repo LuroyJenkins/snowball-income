@@ -2,7 +2,6 @@ package org.starkov.drivers;
 
 import com.codeborne.selenide.Configuration;
 import config.Project;
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
@@ -15,7 +14,7 @@ public class LocalAndRemoteWebDriver {
         Configuration.browserSize = Project.config.browserSize();
         Configuration.baseUrl = Project.config.baseUrl();
         Configuration.browser = Project.config.browser();
-        MutableCapabilities capabilities = new DesiredCapabilities();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
         if (isRemoteDriver()) {
             Configuration.remote = Project.config.remoteDriver()
                     .replace("https://", format("https://%s:%s@", Project.config.user(), Project.config.key()));
