@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class DemoPortfolioMainPage {
-    MenuTab menuTab = new MenuTab();
+    MenuTab menuTap = new MenuTab();
     NavigationTab navigationTab = new NavigationTab();
     TopBar topBar = new TopBar();
     DropDownMenu dropDownMenu = new DropDownMenu();
@@ -56,12 +56,12 @@ public class DemoPortfolioMainPage {
     }
 
     public DemoPortfolioMainPage openCurrencySelector() {
+        menuTap.waitAllTabs(5);
         topBar.openCurrencySelector();
         return this;
     }
 
     public DemoPortfolioMainPage selectCurrency(Currencies currency) {
-        menuTab.waitAllTabs(5);
         dropDownMenu.selectItem(currency.getDescription());
         return this;
     }
