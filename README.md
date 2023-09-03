@@ -29,18 +29,21 @@
 ### :computer: Используемый стек
 
 <p  align="center">
-  <code><img width="5%" title="IntelliJ IDEA" src="./images/icons/IDEA-logo.svg"></code>
-  <code><img width="5%" title="Java" src="./images/icons/java-logo.svg"></code>
-  <code><img width="5%" title="Selenide" src="./images/icons/selenide-logo.svg"></code>
-  <code><img width="5%" title="Selenoid" src="./images/icons/selenoid-logo.svg"></code>
-  <code><img width="5%" title="Gradle" src="./images/icons/gradle-logo.svg"></code>
-  <code><img width="5%" title="JUnit5" src="./images/icons/junit5-logo.svg"></code>
-  <code><img width="5%" title="Allure Report" src="./images/icons/allure-Report-logo.svg"></code>
-  <code><img width="5%" title="Allure TestOps" src="./images/icons/allure-ee-logo.svg"></code>
-  <code><img width="5%" title="Github" src="./images/icons/git-logo.svg"></code>
-  <code><img width="5%" title="Jenkins" src="./images/icons/jenkins-logo.svg"></code>
-  <code><img width="5%" title="Jira" src="./images/icons/jira-logo.svg"></code>
-  <code><img width="5%" title="Telegram" src="./images/icons/Telegram.svg"></code>
+  <a href="https://www.jetbrains.com/idea/"><code><img width="5%" title="IntelliJ IDEA" src="./images/icons/IDEA-logo.svg"></code>
+  <a href="https://www.java.com/"><code><img width="5%" title="Java" src="./images/icons/java-logo.svg"></code>
+  <a href="https://selenide.org/"><code><img width="5%" title="Selenide" src="./images/icons/selenide-logo.svg"></code>
+  <a href="https://aerokube.com/selenoid/"><code><img width="5%" title="Selenoid" src="./images/icons/selenoid-logo.svg"></code>
+  <a href="https://gradle.org/"><code><img width="5%" title="Gradle" src="./images/icons/gradle-logo.svg"></code>
+  <a href="https://junit.org/junit5/"><code><img width="5%" title="JUnit5" src="./images/icons/junit5-logo.svg"></code>
+  <a href="https://rest-assured.io/"><code><img width="5%" title="RestAssured" src="./images/icons/rest-assured-logo.svg"></code>
+  <a href="http://appium.io/docs/en/2.1/"><code><img width="5%" title="Appium" src="./images/icons/appium.svg"></code>
+  <a href="https://www.browserstack.com/"><code><img width="5%" title="Browserstack" src="./images/icons/browserstack.svg"></code>
+  <a href="https://github.com/allure-framework/allure2"><code><img width="5%" title="Allure Report" src="./images/icons/allure-Report-logo.svg"></code>
+  <a href="https://qameta.io/"><code><img width="5%" title="Allure TestOps" src="./images/icons/allure-ee-logo.svg"></code>
+  <a href="https://github.com/"><code><img width="5%" title="Github" src="./images/icons/git-logo.svg"></code>
+  <a href="https://www.jenkins.io/"><code><img width="5%" title="Jenkins" src="./images/icons/jenkins-logo.svg"></code>
+  <a href="https://www.atlassian.com/ru/software/jira"><code><img width="5%" title="Jira" src="./images/icons/jira-logo.svg"></code>
+  <a href="https://web.telegram.org/"><code><img width="5%" title="Telegram" src="./images/icons/Telegram.svg"></code>
 </p>
 
 Автотесты в этом проекте написаны на `Java` использую `Selenide` фреймворк.\
@@ -156,7 +159,7 @@ C --> F[browser_local]
 ## Allure TestOps Dashboard
 
 <p align="center">
-  <img src="images/screens/AllureTestOps.png" alt="AllureTestOps" width="950">
+  <img src="images/screens/AllureTestOpsRun.png" alt="AllureTestOps" width="950">
 </p>
 
 ```mermaid
@@ -193,7 +196,11 @@ E --> A
 # <img width="4%" style="vertical-align:middle" title="Selenoid" src="images/icons/selenoid-logo.svg"> <a>Видео запуска тестов в Selenoid</a>
 К каждому тесту в отчете прилагается видео прохождения теста:
 <p align="center">
-  <img src="images/screens/video.gif" alt="JiraIntegration">
+  <img src="images/screens/selenoid.gif" alt="VideoSelenoid">
+</p>
+Видео выполнения на мобильном устройстве:
+<p align="center">
+  <img src="images/screens/iphone.gif" alt="VideoIphone">
 </p>
 
 [Вернуться к оглавлению ⬆](#pushpin-содержание)
