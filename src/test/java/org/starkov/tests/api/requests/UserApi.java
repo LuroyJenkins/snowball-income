@@ -1,6 +1,6 @@
 package org.starkov.tests.api.requests;
 
-import config.Project;
+import config.ProjectConfigValidator;
 import org.starkov.tests.api.models.user.AddPublicRespModel;
 import org.starkov.tests.api.models.user.GetPublicRespModel;
 import org.starkov.tests.api.specs.BaseSpec;
@@ -13,16 +13,16 @@ import static org.starkov.tests.api.specs.UserSpec.getReqMultipart;
 
 public class UserApi {
     private final BaseSpec baseSpec = new BaseSpec();
-    private final static String baseApiEndPoint = "api/user";
-    private final static String updateApiEndPoint = baseApiEndPoint + "/updatepublic";
-    private final static String getApiEndPoint = baseApiEndPoint + "/getpublic";
+    private final static String baseUserEndPoint = "api/user";
+    private final static String updUserEndPoint = baseUserEndPoint + "/updatepublic";
+    private final static String getUserEndPoint = baseUserEndPoint + "/getpublic";
     private static final String getSchemaPath = "schemas/getUserPublic-json-schema.json";
     private static final String addSchemaPath = "schemas/putUserPublic-json-schema.json";
 
     public GetPublicRespModel getPublicInfo() {
         return given(defaultRequestSpec)
                 .when()
-                .get(Project.config.apiBaseUrl() + getApiEndPoint)
+                .get(ProjectConfigValidator.config.apiBaseUrl() + getUserEndPoint)
                 .then()
                 .spec(baseSpec.getResponseSpec(200, getSchemaPath))
                 .log().all()
@@ -33,7 +33,7 @@ public class UserApi {
         return given(getReqMultipart(publicLinks))
                 .multiPart("PublicInvestorName", publicName)
                 .when()
-                .put(Project.config.apiBaseUrl() + updateApiEndPoint)
+                .put(ProjectConfigValidator.config.apiBaseUrl() + updUserEndPoint)
                 .then()
                 .spec(baseSpec.getResponseSpec(200, addSchemaPath))
                 .log().all()

@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.starkov.tests.web.pages.AuthPage;
+import org.starkov.tests.web.pages.MainPage;
+import org.starkov.tests.web.pages.OnboardingPage;
 
 import static io.qameta.allure.Allure.step;
 
@@ -15,7 +18,11 @@ import static io.qameta.allure.Allure.step;
 @Epic("UI")
 @Feature("Авторизация")
 @Owner("nikita.starkov")
-public class AuthenticationTests extends WebTestBase{
+public class AuthenticationTests extends WebTestBase {
+    public static final MainPage mainPage = new MainPage();
+    public static final OnboardingPage onboardingPage = new OnboardingPage();
+    public static final AuthPage authPage = new AuthPage();
+
 
     @Test()
     @Story("Быстрый старт")
@@ -33,7 +40,7 @@ public class AuthenticationTests extends WebTestBase{
     @Story("Стандартная авторизация")
     @Severity(SeverityLevel.BLOCKER)
     @DisplayName("Проверка успешной авторизации")
-    @CsvFileSource(resources = "/data/AuthData.txt")
+    @CsvFileSource(resources = "/data/AuthData.csv")
     public void authSuccessTest(String email, String password) {
         step("Кликаем на кнопку перехода к форме авторизации", mainPage::loginBtnClick);
         step("Ввод данных для регистрации", () -> authPage.setEmail(email)

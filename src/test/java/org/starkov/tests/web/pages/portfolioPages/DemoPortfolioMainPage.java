@@ -3,25 +3,25 @@ package org.starkov.tests.web.pages.portfolioPages;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.starkov.tests.web.domain.Currencies;
-import org.starkov.tests.web.pages.components.DropDownMenu;
-import org.starkov.tests.web.pages.components.MenuTab;
-import org.starkov.tests.web.pages.components.NavigationTab;
-import org.starkov.tests.web.pages.components.TopBar;
+import org.starkov.tests.web.pages.components.DropDownComponent;
+import org.starkov.tests.web.pages.components.MenuTabComponent;
+import org.starkov.tests.web.pages.components.NavigationTabComponent;
+import org.starkov.tests.web.pages.components.TopBarComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class DemoPortfolioMainPage {
-    MenuTab menuTap = new MenuTab();
-    NavigationTab navigationTab = new NavigationTab();
-    TopBar topBar = new TopBar();
-    DropDownMenu dropDownMenu = new DropDownMenu();
+    MenuTabComponent menuTap = new MenuTabComponent();
+    NavigationTabComponent navigationTab = new NavigationTabComponent();
+    TopBarComponent topBar = new TopBarComponent();
+    DropDownComponent dropDownMenu = new DropDownComponent();
     private String categoryDescription;
-    private static final ElementsCollection categoryBodies = $$(".categories-block .card-body"),
+    private final ElementsCollection categoryBodies = $$(".categories-block .card-body"),
             canvasList = $$("canvas"),
             statsCards = $$(".stats-card");
-    private static final SelenideElement categoryViewCard = categoryBodies.first(),
+    private final SelenideElement categoryViewCard = categoryBodies.first(),
             categoryListCard = categoryBodies.get(1),
             categoryList = categoryListCard.$(".table-responsive"),
             categoryPath = categoryViewCard.$(".col"),

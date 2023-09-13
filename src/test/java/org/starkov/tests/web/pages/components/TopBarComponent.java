@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class TopBar {
+public class TopBarComponent {
     private final SelenideElement topBarLocator = $(".topbar");
     private final ElementsCollection topBarDropdowns = topBarLocator.$$(".topbar-dropdown");
 

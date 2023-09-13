@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddWatchlistReqModel {
-        private String ticker;
-        private String exchange;
-        private String currency;
-        private String watchlistId;
+    private String ticker;
+    private String exchange;
+    private String currency;
+    private String watchlistId;
 }

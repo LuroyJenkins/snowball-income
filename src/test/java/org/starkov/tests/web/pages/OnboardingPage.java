@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class OnboardingPage {
     SelenideElement greetingsText = $(".text-center");
 
-    public void greetingTextCheck(){
+    public void greetingTextCheck() {
         greetingsText.shouldHave(text("Добро пожаловать в Snowball Income"));
     }
 }

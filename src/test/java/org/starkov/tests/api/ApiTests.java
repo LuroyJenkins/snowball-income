@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.aggregator.AggregateWith;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.starkov.helpers.VarargsAggregator;
@@ -25,6 +26,7 @@ import org.starkov.tests.api.requests.WatchlistApi;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -115,10 +117,29 @@ public class ApiTests {
         assertEquals(0, watchList[0].getAssetsCount());
     }
 
+    static Stream<Arguments> addPublicLinksTest() {
+        return Stream.of(
+                Arguments.of("Test1", Map.of("PublicInvestorLinks[0].Name", "VK",
+                        "PublicInvestorLinks[0].Url", "https://vk.com/")),
+                Arguments.of("Test22132121313", Map.of("PublicInvestorLinks[0].Url", "https://twitter.com/",
+                        "PublicInvestorLinks[0].Name", "Twitter",
+                        "PublicInvestorLinks[1].Name", "VK",
+                        "PublicInvestorLinks[1].Url", "https://vk.com/")),
+                Arguments.of("___Test___", Map.of(
+                        "PublicInvestorLinks[0].Name", "VK",
+                        "PublicInvestorLinks[0].Url", "https://vk.com/",
+                        "PublicInvestorLinks[1].Name", "YouTube",
+                        "PublicInvestorLinks[1].Url", "https://youtube.com/",
+                        "PublicInvestorLinks[2].Name", "Twitter",
+                        "PublicInvestorLinks[2].Url", "https://twitter.com/")
+                )
+        );
+    }
+
     @ParameterizedTest
     @Story("Публичный профиль")
     @Severity(SeverityLevel.NORMAL)
-    @MethodSource("org.starkov.tests.api.dataProviders.UserDataProvider#addPublicLinksTest")
+    @MethodSource("addPublicLinksTest")
     @DisplayName("Добавление ссылки на соц.сети")
     public void addPublicLinksTest(String investorName, Map<String, String> links) {
         userApi.addPublicInfo(investorName, links);

@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class GrowthPage {
-    private static SelenideElement portfolioValue = $("#apexchartshistoryxchart"),
+    private SelenideElement portfolioValue = $("#apexchartshistoryxchart"),
             portfolioValueGraph = portfolioValue.$(".apexcharts-graphical"),
             valueGraphTooltip = portfolioValue.$(".apexcharts-tooltip");
 

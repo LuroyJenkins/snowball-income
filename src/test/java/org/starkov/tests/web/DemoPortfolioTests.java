@@ -9,6 +9,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.starkov.helpers.WithLogin;
 import org.starkov.tests.web.domain.Currencies;
+import org.starkov.tests.web.pages.MainPage;
+import org.starkov.tests.web.pages.portfolioPages.DemoPortfolioMainPage;
+import org.starkov.tests.web.pages.portfolioPages.GrowthPage;
 
 import static io.qameta.allure.Allure.step;
 
@@ -17,6 +20,9 @@ import static io.qameta.allure.Allure.step;
 @Feature("Демо портфель")
 @Owner("nikita.starkov")
 public class DemoPortfolioTests extends WebTestBase {
+    public static final DemoPortfolioMainPage demoPortMP = new DemoPortfolioMainPage();
+    public static final MainPage mainPage = new MainPage();
+    public static final GrowthPage growthPage = new GrowthPage();
 
     @Test
     @Story("Проверка пути")
@@ -53,9 +59,9 @@ public class DemoPortfolioTests extends WebTestBase {
     @ParameterizedTest(name = "Проверка расчетов в валюте - {1}")
     @EnumSource(Currencies.class)
     @WithLogin
-    @Story("Невалидный ввод пароля")
+    @Story("Валютная конвертация")
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Проверка вспомогательного сообщения при некорректном вводе пароля")
+    @DisplayName("Проверка, что при смене валюты меняются данные на странице")
     public void currencyDisplayTest(Currencies currency) {
         step("Открываем окно выбора валют", demoPortMP::openCurrencySelector);
         step("Выбираем валюту", () -> demoPortMP.selectCurrency(currency));

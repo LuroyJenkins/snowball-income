@@ -2,6 +2,7 @@ package org.starkov.tests.web.pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.github.javafaker.Faker;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -10,15 +11,18 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainPage {
-    private static final ElementsCollection videosList = $$("video"),
+    private final ElementsCollection videosList = $$("video"),
             lazyVideosList = $$("video.lazy"),
             indicatorsList = $$(".carousel-indicators li"),
             commentsList = $$(".carousel-item");
-    private static final SelenideElement emailInput = $("[type=email]"),
+    private final SelenideElement emailInput = $("[type=email]"),
             passwordInput = $("[type=password]"),
             submitBtn = $("[type=submit]"),
             loginBtn = $(".topbar").$(byText("Войти")),
             demoPortfolioBtn = $(".value-proposition").$(withText("демо портфель"));
+
+    private static final Faker faker = new Faker();
+    public static int generatedIndex1to5 = faker.number().numberBetween(1, 5);
 
     public MainPage scrollToVideo(int index) {
         videosList.get(index).scrollTo();
@@ -83,7 +87,7 @@ public class MainPage {
         loginBtn.click();
     }
 
-    public void demoPortfolioBtnClick(){
+    public void demoPortfolioBtnClick() {
         demoPortfolioBtn.click();
     }
 }

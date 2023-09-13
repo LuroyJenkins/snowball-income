@@ -12,20 +12,19 @@ public interface ProjectConfig extends Config {
 
     String baseUrl();
 
-    @Key("browser")
+    //    @Key("browser")
     String browser();
 
     String browserSize();
 
-    @Key("runIn")
+    //    @Key("runIn")
     String runIn();
 
     String user();
 
     String key();
 
-    @Key("device")
-    String deviceName();
+    String device();
 
     String platformVersion();
 

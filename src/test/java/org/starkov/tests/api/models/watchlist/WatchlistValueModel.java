@@ -131,7 +131,7 @@ public class WatchlistValueModel {
 }
 
 @Data
-class CustomPeriodSeries{
+class CustomPeriodSeries {
     public Date x;
     public double y;
 }

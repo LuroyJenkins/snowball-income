@@ -12,7 +12,7 @@ repositories {
 }
 
 def allureVersion = "2.23.0",
-    selenideVersion = "6.13.0",
+    selenideVersion = "6.16.1",
     appiumVersion = "8.3.0",
     junitVersion = "5.10.0",
     slf4jVersion = "2.0.7",
@@ -45,7 +45,6 @@ dependencies {
             "io.qameta.allure:allure-selenide:$allureVersion",
             "io.qameta.allure:allure-rest-assured:$allureVersion",
             "com.github.javafaker:javafaker:1.0.2",
-            "io.github.bonigarcia:webdrivermanager:5.4.1",
             "org.slf4j:slf4j-simple:$slf4jVersion")
 }
 

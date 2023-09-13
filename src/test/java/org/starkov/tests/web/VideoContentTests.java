@@ -4,6 +4,7 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.starkov.tests.web.pages.MainPage;
 
 import static io.qameta.allure.Allure.step;
 
@@ -11,7 +12,8 @@ import static io.qameta.allure.Allure.step;
 @Epic("UI")
 @Feature("Видеоплеер")
 @Owner("nikita.starkov")
-public class VideoContentTests extends WebTestBase{
+public class VideoContentTests extends WebTestBase {
+    public static final MainPage mainPage = new MainPage();
 
     @ParameterizedTest(name = "Проверка, что при просмотре ролика № {0} , другие не воспроизводятся")
     @Story("Ленивое воспроизведение видео")

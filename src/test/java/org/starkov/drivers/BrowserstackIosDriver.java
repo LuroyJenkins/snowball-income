@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static config.Project.config;
+import static config.ProjectConfigValidator.config;
 import static io.appium.java_client.remote.MobileBrowserType.SAFARI;
 
 public class BrowserstackIosDriver implements WebDriverProvider {
@@ -37,7 +37,7 @@ public class BrowserstackIosDriver implements WebDriverProvider {
         desiredCapabilities.setCapability("browserstack.user", config.user());
         desiredCapabilities.setCapability("browserstack.key", config.key());
         desiredCapabilities.setCapability("browser", SAFARI);
-        desiredCapabilities.setCapability("device", config.deviceName());
+        desiredCapabilities.setCapability("device", config.device());
         desiredCapabilities.setCapability("os_version", config.platformVersion());
         desiredCapabilities.setCapability("project", config.project());
         desiredCapabilities.setCapability("build", config.build());

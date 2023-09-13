@@ -4,11 +4,11 @@ import org.aeonbits.owner.ConfigFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static config.App.validateProperty;
+import static org.starkov.helpers.Validations.validateProperty;
 
-public class Project {
+public class ProjectConfigValidator {
     public static ProjectConfig config = ConfigFactory.create(ProjectConfig.class);
-    private static final Logger logger = LoggerFactory.getLogger(Project.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProjectConfigValidator.class);
 
     static {
         if ("API".equals(System.getProperty("tag"))) {
@@ -20,7 +20,6 @@ public class Project {
     }
 
     private static void validateEnvDependentProperties() {
-        validateProperty(config.runIn(), "runIn");
         switch (config.runIn()) {
             case "browser_selenoid":
                 validateProperty(config.remoteDriver(), "remoteDriver");

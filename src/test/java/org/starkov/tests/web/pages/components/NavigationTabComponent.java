@@ -5,10 +5,10 @@ import com.codeborne.selenide.ElementsCollection;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class NavigationTab {
+public class NavigationTabComponent {
     private final ElementsCollection navTabs = $$(".nav-tabs li");
 
-    public void clickToTab(String tabText){
+    public void clickToTab(String tabText) {
         navTabs.findBy(text(tabText)).click();
     }
 }

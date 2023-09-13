@@ -19,7 +19,7 @@
 # <a name="Описание">Описание</a>
 Тестовый проект состоит из веб-тестов (UI).\
 Краткий список интересных фактов о проекте:
-- [x] `Page Object` проектирование
+- [x] `Page Object` паттерн
 - [x] Параметризованные тесты
 - [x] Различные конфигурации для запуска теста в зависимости от параметров сборки
 - [x] Интеграция с `Allure TestOps`
@@ -112,7 +112,7 @@ C --> F[browser_local]
 
 [Вернуться к оглавлению ⬆](#pushpin-содержание)
 
-# <img width="4%" style="vertical-align:middle" title="AllureReport" src="images/icons/allure-Report-logo.svg"> <a name="AllureReport">Результаты тестов в [Allure Report](https://jenkins.autotests.cloud/job/Starkov_qa_guru_15/5/allure/)</a>
+# <img width="4%" style="vertical-align:middle" title="AllureReport" src="images/icons/allure-Report-logo.svg"> <a name="AllureReport">Результаты тестов в [Allure Report](https://jenkins.autotests.cloud/job/Snowball-Income/allure/)</a>
 
 ## Главная страница
 Главная страница отчета Allure содержит следующие блоки:

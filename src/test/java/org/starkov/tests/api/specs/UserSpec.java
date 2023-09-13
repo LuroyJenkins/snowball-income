@@ -9,15 +9,15 @@ import static io.restassured.RestAssured.with;
 import static io.restassured.http.ContentType.MULTIPART;
 import static org.starkov.helpers.CustomAllureListener.withCustomTemplates;
 
-public class UserSpec extends BaseSpec{
+public class UserSpec extends BaseSpec {
 
-    public static RequestSpecification getReqMultipart(Map<String, String> formData){
+    public static RequestSpecification getReqMultipart(Map<String, String> formData) {
         RequestSpecification formDataRequestSpec = with()
                 .filter(withCustomTemplates())
                 .contentType(MULTIPART)
                 .header("Authorization", "Bearer " +
                         new AuthorizationApi().getAuthorization().getLoginProps().getAccessToken());
-        for (Map.Entry<String, String> entry : formData.entrySet()){
+        for (Map.Entry<String, String> entry : formData.entrySet()) {
             formDataRequestSpec.multiPart(entry.getKey(), entry.getValue());
         }
         return formDataRequestSpec;

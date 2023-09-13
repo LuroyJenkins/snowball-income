@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class AuthPage {
-    private static final SelenideElement emailInput = $("[type=email]"),
+    private final SelenideElement emailInput = $("[type=email]"),
             passwordInput = $("[type=password]"),
             submitBtn = $("[type=submit]"),
             helpBlock = $(".fv-help-block");
@@ -25,7 +25,7 @@ public class AuthPage {
         submitBtn.click();
     }
 
-    public void checkHelpText(String helpText){
+    public void checkHelpText(String helpText) {
         helpBlock.shouldHave(text(helpText));
     }
 }

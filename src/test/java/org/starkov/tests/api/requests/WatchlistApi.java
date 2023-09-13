@@ -1,6 +1,6 @@
 package org.starkov.tests.api.requests;
 
-import config.Project;
+import config.ProjectConfigValidator;
 import org.starkov.tests.api.models.watchlist.AddWatchlistReqModel;
 import org.starkov.tests.api.models.watchlist.AddWatchlistRespModel;
 import org.starkov.tests.api.models.watchlist.WatchlistListModel;
@@ -22,7 +22,7 @@ public class WatchlistApi {
     public WatchlistListModel[] getWatchlistList() {
         return given(defaultRequestSpec)
                 .when()
-                .get(Project.config.apiBaseUrl() + getListApiEndPoint)
+                .get(ProjectConfigValidator.config.apiBaseUrl() + getListApiEndPoint)
                 .then()
                 .spec(baseSpec.getResponseSpec(200, getWatchlistsSchemaPath))
                 .log().all()
@@ -32,7 +32,7 @@ public class WatchlistApi {
     public AddWatchlistRespModel addValueForWatch(String ticker, String exchange, String currency, String watchlistId) {
         return given(defaultRequestSpec)
                 .body(new AddWatchlistReqModel(ticker, exchange, currency, watchlistId))
-                .post(Project.config.apiBaseUrl() + watchlistApiEndPoint)
+                .post(ProjectConfigValidator.config.apiBaseUrl() + watchlistApiEndPoint)
                 .then()
                 .spec(baseSpec.getResponseSpec(200, addValueSchemaPath))
                 .log().all()
@@ -41,12 +41,12 @@ public class WatchlistApi {
 
     }
 
-    public WatchlistValueModel[] getWatchlistValues(String watchlistId, String changePeriod){
+    public WatchlistValueModel[] getWatchlistValues(String watchlistId, String changePeriod) {
         return given(defaultRequestSpec)
                 .when()
                 .queryParam("watchlistId", watchlistId)
                 .queryParam("changePeriod", changePeriod)
-                .get(Project.config.apiBaseUrl() + getValuesApiEndPoint)
+                .get(ProjectConfigValidator.config.apiBaseUrl() + getValuesApiEndPoint)
                 .then()
                 .spec(baseSpec.getResponseSpec(200))
                 .log().all()
@@ -54,10 +54,10 @@ public class WatchlistApi {
                 .extract().as(WatchlistValueModel[].class);
     }
 
-    public void delValueFromWatchlist(String id){
+    public void delValueFromWatchlist(String id) {
         given(defaultRequestSpec)
                 .when()
-                .delete(Project.config.apiBaseUrl() + watchlistApiEndPoint + "/" + id)
+                .delete(ProjectConfigValidator.config.apiBaseUrl() + watchlistApiEndPoint + "/" + id)
                 .then()
                 .spec(baseSpec.getResponseSpec(200))
                 .log().all()
