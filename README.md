@@ -17,13 +17,19 @@
 + [Видео примера запуска тестов в Selenoid](#-видео-запуска-тестов-в-selenoid)
 
 # <a name="Описание">Описание</a>
-Тестовый проект состоит из веб-тестов (UI).\
-Краткий список интересных фактов о проекте:
-- [x] `Page Object` паттерн
+Тестовый проект состоит из веб-тестов (UI), тестов API и мобильных тестов (Android).
+
+**Краткий список интересных фактов о проекте:**
+- [x] `Page Object` проектирование
 - [x] Параметризованные тесты
 - [x] Различные конфигурации для запуска теста в зависимости от параметров сборки
-- [x] Интеграция с `Allure TestOps`
+- [x] Конфигурация с библиотекой `Owner`
+- [x] Написана кастомная аннотация `@WithLogin` для прокидывания токена авторизации
+- [x] Использование `Lombok` для моделей в API тестах
+- [x] Использование request/response спецификаций для API тестов
+- [x] Custom Allure listener для API requests/responses логов
 - [x] Автотесты как тестовая документация
+- [x] Интеграция с `Allure TestOps`
 - [x] Интеграция с `Jira`
 
 ### :computer: Используемый стек
@@ -49,8 +55,11 @@
 Автотесты в этом проекте написаны на `Java` использую `Selenide` фреймворк.\
 `Gradle` - используется как инструмент автоматизации сборки.  \
 `JUnit5` - для выполнения тестов.\
+`REST Assured` - для тестирования REST-API сервисов.\
 `Jenkins` - CI/CD для запуска тестов удаленно.\
 `Selenoid` - для удаленного запуска браузера в `Docker` контейнерах.\
+`Browserstack` - для запуска мобильных тестов удаленно.\
+`Appium` - для взаимодействия с мобильным устройством.\
 `Allure Report` - для визуализации результатов тестирования.\
 `Telegram Bot` - для уведомлений о результатах тестирования.\
 `Allure TestOps` - как система управления тестированием.
@@ -62,32 +71,45 @@
 ## <a name="GradleCommand">Команды для Gradle</a>
 Для запуска локально и в Jenkins используется следующая команда::
 ```bash
-gradle clean <TaskNake> <Some params...>
+gradle clean test -Dtag=<tag> -DrunIn=<runIn>
 ```
 
-`TaskName` - теги для запуска выполнения тестов:
->- *regressTests* - запуск всех тестов
->- *demoPortfolioTests* - запуск тестов на Демо-портфель
->- *authTests* - запуск тестов на авторизацию
->- *videoContentTests* - запуск тестов на видеоконтент
-
 Дополнительные параметры:
-> `-DremoteUrl=https://user1:1234@selenoid.autotests.cloud/wd/hub` - URL-адрес selenoid\
-> `-Dbrowser=chrome` - выбор браузера (по умолчанию - chrome)\
-> `-DbrowserVersion=100.0` - установка версии браузера\
-> `-DbrowserSize=1920x1080` - установка разрешения окна браузера.
+> `-Dselenoid_user_sys_prop=enter_user` `-Dselenoid_key_sys_prop=enter_key` - данные для входа в Selenoid\
+> `-Dbrowserstack_user_sys_prop=enter_user` `-Dbrowserstack_key_sys_prop=enter_key` - данные для входа в Browserstack\
+> `-Dsnowball_login_sys_prop=enter_login` `-Dsnowball_pass_sys_prop=enter_pass`- данные для авторизации в Snowball-Income.
+
+`tag` - теги для запуска выполнения тестов:
+>- *API*
+>- *Web*
+>- *Mobile*
+ 
+`runIn` - определяет среду для запуска этих тестов:
+>- *api* - for api tests
+>- *browser_selenoid*
+>- *browser_local*
+>- *ios_browserstack*
+
+Дополнительные свойства извлекаются из соответствующего файла конфигурации (в зависимости от значения `runIn`):
+```bash
+./resources/config/${runIn}.properties
+```
 
 Допустимые комбинации:
 ```mermaid
 graph LR
-A[tag] --> C[Web]
+A[tag] --> B[API]
+A --> C[Web]
+A --> D[Mobile]
+B --> K[api]
 C --> E[browser_selenoid]
 C --> F[browser_local]
+D --> G[ios_browserstack]
 ```
 
 [Вернуться к оглавлению ⬆](#pushpin-содержание)
 
-## <img src="./images/icons/jenkins-logo.svg" title="Jenkins" width="4%"/> <a name="Запуск в Jenkins">Запуск в [Jenkins](https://jenkins.autotests.cloud/job/Starkov_qa_guru_15)</a>
+## <img src="./images/icons/jenkins-logo.svg" title="Jenkins" width="4%"/> <a name="Запуск в Jenkins">Запуск в [Jenkins](https://jenkins.autotests.cloud/job/Snowball-Income/)</a>
 Главная страница сборки:
 <p  align="center">
 <img src="images/screens/JenkinsBuild.png" width="950">
@@ -97,6 +119,9 @@ C --> F[browser_local]
 <p  align="center">
 <img src="images/screens/JenkinsParams.png" alt="JenkinsBuildParameters" width="950">
 </p>
+
+Конфиденциальная информация (имена для входа и пароли) хранится в зашифрованном виде в хранилище учетных данных Jenkins.\
+И относительно безопасно передается в сборку аргументами gradle, а его значения маскируются в логах.
 
 После завершения сборки результаты тестирования доступны в:
 >- <code><strong>*Allure Report*</strong></code>
@@ -145,7 +170,7 @@ C --> F[browser_local]
 
 [Вернуться к оглавлению ⬆](#pushpin-содержание)
 
-# <img width="4%" style="vertical-align:middle" title="Allure TestOps" src="images/icons/allure-ee-logo.svg"> <a>Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/3586/dashboards)</a>
+# <img width="4%" style="vertical-align:middle" title="Allure TestOps" src="images/icons/allure-ee-logo.svg"> <a>Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/3642/dashboards)</a>
 > Ссылка доступна только авторизованным пользователям.
 
 Выполнена интеграция сборки <code>Jenkins</code> с <code>Allure TestOps</code>.
@@ -185,7 +210,7 @@ E --> A
 
 [Вернуться к оглавлению ⬆](#pushpin-содержание)
 
-# <img width="4%" style="vertical-align:middle" title="Jira" src="images/icons/jira-logo.svg"> <a>Интеграция с Jira</a>
+# <img width="4%" style="vertical-align:middle" title="Jira" src="images/icons/jira-logo.svg"> <a>Интеграция с [Jira](https://jira.autotests.cloud/browse/HOMEWORK-828)</a>
 Реализована интеграция <code>Allure TestOps</code> с <code>Jira</code>, в тикете отображается информация, какие тест-кейсы были написаны в рамках задачи и результат их прогона.
 <p align="center">
   <img src="images/screens/JiraIntegration.png" alt="JiraIntegration" width="950">
