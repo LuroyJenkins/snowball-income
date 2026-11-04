@@ -47,7 +47,7 @@ jobs:
           gradle-version: '8.14'
 
       - name: Run tests
-        run: ./gradlew test
+        run: gradle test
 
   release:
     name: 3. Pseudo Release
@@ -67,7 +67,7 @@ jobs:
           gradle-version: '8.14'
 
       - name: Build release artifact
-        run: ./gradlew assemble
+        run: gradle assemble
 
       - name: Upload release artifact
         uses: actions/upload-artifact@v4
