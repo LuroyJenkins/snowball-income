@@ -22,8 +22,12 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14'
+
       - name: Compile project
-        run: ./gradlew assemble
+        run: gradle assemble
 
   test:
     name: 2. Test
@@ -37,6 +41,10 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14'
 
       - name: Run tests
         run: ./gradlew test
@@ -53,6 +61,10 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14'
 
       - name: Build release artifact
         run: ./gradlew assemble
